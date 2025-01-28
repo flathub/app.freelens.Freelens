@@ -84,8 +84,6 @@ modules:
         only-arches:
           - aarch64
       - type: file
-        path: app.freelens.Freelens.metainfo.xml
-      - type: file
         path: freelens-launch.sh
       - type: file
         path: host-spawn.sh
