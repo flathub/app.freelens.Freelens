@@ -52,7 +52,8 @@ modules:
         for size in 512; do
           install -Dm0644 "usr/share/icons/hicolor/${size}x${size}/apps/freelens.png" "${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png"
         done
-      - install -Dm0644 "${FLATPAK_ID}.metainfo.xml" "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+      - install -Dm0644 "usr/share/metainfo/${FLATPAK_ID}.metainfo.xml" "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+      - sed -i 's,<launchable type="desktop-id">.*</launchable>,<launchable type="desktop-id">'"${FLATPAK_ID}.desktop"'</launchable>,' "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
       - desktop-file-edit --set-key=Exec --set-value='freelens %U' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
@@ -83,8 +84,6 @@ modules:
             | .browser_download_url
         only-arches:
           - aarch64
-      - type: file
-        path: app.freelens.Freelens.metainfo.xml
       - type: file
         path: freelens-launch.sh
       - type: file
