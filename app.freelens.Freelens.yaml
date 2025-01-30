@@ -44,7 +44,7 @@ modules:
       - mv opt/Freelens "${FLATPAK_DEST}/Freelens"
       - install -Dm0755 freelens-launch.sh "${FLATPAK_DEST}/bin/freelens"
       - |
-        for cmd in assume aws gke-gcloud-auth-plugin kubelogin; do
+        for cmd in assume aws doctl gke-gcloud-auth-plugin kubelogin; do
           install -Dm0755 host-spawn.sh "${FLATPAK_DEST}/bin/$cmd"
         done
       - install -Dm0644 usr/share/applications/freelens.desktop "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
