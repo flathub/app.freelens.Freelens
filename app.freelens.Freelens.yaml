@@ -88,7 +88,7 @@ modules:
       - type: file
         path: host-spawn.sh
       - type: file
-        path: icon.png
+        path: icon-512.png
       - type: file
         path: metainfo.xml
 
