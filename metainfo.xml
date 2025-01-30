@@ -53,6 +53,14 @@
   <provides>
     <binary>freelens</binary>
   </provides>
+  <categories>
+    <category>Development</category>
+    <category>Network</category>
+  </categories>
+  <keywords>
+    <keyword>IDE</keyword>
+    <keyword>kubernetes</keyword>
+  </keywords>
   <icon type="stock">app.freelens.Freelens</icon>
   <icon type="remote">https://freelensapp.github.io/images/freelens-logo-512.png</icon>
   <content_rating type="oars-1.1"></content_rating>
