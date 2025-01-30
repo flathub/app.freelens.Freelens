@@ -50,7 +50,7 @@ modules:
       - install -Dm0644 usr/share/applications/freelens.desktop "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - |
         for size in 512; do
-          install -Dm0644 "usr/share/icons/hicolor/${size}x${size}/apps/freelens.png" "${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png"
+          install -Dm0644 icon-${size}.png "${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png"
         done
       - install -Dm0644 metainfo.xml "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
       - desktop-file-edit --set-key=Exec --set-value='freelens %U' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
@@ -87,6 +87,8 @@ modules:
         path: freelens-launch.sh
       - type: file
         path: host-spawn.sh
+      - type: file
+        path: icon.png
       - type: file
         path: metainfo.xml
 
