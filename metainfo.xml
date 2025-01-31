@@ -22,6 +22,14 @@
       <li>Extension support to add custom functionality</li>
     </ul>
     <p>Freelens is maintained by the community.</p>
+    <p>Note specific to Flatpak:</p>
+    <p>The application is sandboxed. It includes bundled <code>kubectl</code> and <code>helm</code> commands
+and uses <code>~/.kube/config</code> file by default.</p>
+    <p>Flatpak adds wrapper for the <code>aws</code>,      <code>doctl</code>,      <code>gke-gcloud-auth-plugin</code> and
+      <code>kubelogin</code> tools and runs them as a commands from the host system.</p>
+    <p>The terminal uses <code>/bin/sh</code> by default, but it can be switched to, for
+example, <code>/bin/bash</code> for sandboxed environment or <code>/app/bin/host-spawn</code> for a host
+environment.</p>
   </description>
   <screenshots>
     <screenshot type="default">
