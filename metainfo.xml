@@ -22,14 +22,6 @@
       <li>Extension support to add custom functionality</li>
     </ul>
     <p>Freelens is maintained by the community.</p>
-    <p>Note specific to Flatpak:</p>
-    <p>The application is sandboxed. It includes bundled <code>kubectl</code> and <code>helm</code> commands
-and uses <code>~/.kube/config</code> file by default.</p>
-    <p>Flatpak adds wrapper for the <code>aws</code>,      <code>doctl</code>,      <code>gke-gcloud-auth-plugin</code> and
-      <code>kubelogin</code> tools and runs them as a commands from the host system.</p>
-    <p>The terminal uses <code>/bin/sh</code> by default, but it can be switched to, for
-example, <code>/bin/bash</code> for sandboxed environment or <code>/app/bin/host-spawn</code> for a host
-environment.</p>
   </description>
   <screenshots>
     <screenshot type="default">
@@ -46,7 +38,7 @@ environment.</p>
     </screenshot>
   </screenshots>
   <branding>
-    <color type="primary" scheme_preference="light">#b4d3d1</color>
+    <color type="primary" scheme_preference="light">#f1f1f1</color>
     <color type="primary" scheme_preference="dark">#37383e</color>
   </branding>
   <recommends>
@@ -57,7 +49,7 @@ environment.</p>
   <requires>
     <display_length compare="ge">768</display_length>
   </requires>
-  <launchable type="desktop-id">app.freelens.Freelens.desktop</launchable>
+  <launchable type="desktop-id">freelens.desktop</launchable>
   <provides>
     <binary>freelens</binary>
   </provides>
@@ -73,7 +65,7 @@ environment.</p>
     <keyword>ide</keyword>
     <keyword>kubernetes</keyword>
   </keywords>
-  <icon type="stock">app.freelens.Freelens</icon>
+  <icon type="stock">freelens</icon>
   <icon type="remote">https://freelensapp.github.io/images/freelens-logo-512.png</icon>
   <content_rating type="oars-1.1"></content_rating>
   <releases>
