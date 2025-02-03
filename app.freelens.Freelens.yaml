@@ -52,7 +52,12 @@ modules:
         for size in 512; do
           install -Dm0644 icon-${size}.png "${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png"
         done
-      - install -Dm0644 metainfo.xml "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+      - sed \
+          -e 's/<launchable type="desktop-id">freelens.desktop<\/launchable>/<launchable type="desktop-id">'"${FLATPAK_ID}"'.desktop<\/launchable>/' \
+          -e 's/<icon type="stock">freelens<\/icon>/<icon type="stock">'"${FLATPAK_ID}"'<\/icon>/' \
+          -e '/<p>Freelens is maintained by the community.<\/p>/r metainfo-notes.txt' \
+          metainfo.xml > metainfo-flatpak.xml
+      - install -Dm0644 metainfo-flatpak.xml "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
       - desktop-file-edit --set-key=Exec --set-value='freelens %U' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
@@ -91,6 +96,8 @@ modules:
         path: icon-512.png
       - type: file
         path: metainfo.xml
+      - type: file
+        path: metainfo-notes.txt
 
   - name: host-spawn
     buildsystem: simple
