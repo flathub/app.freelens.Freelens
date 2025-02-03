@@ -52,7 +52,8 @@ modules:
         for size in 512; do
           install -Dm0644 icon-${size}.png "${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png"
         done
-      - sed \
+      - |
+        sed \
           -e 's/<launchable type="desktop-id">freelens.desktop<\/launchable>/<launchable type="desktop-id">'"${FLATPAK_ID}"'.desktop<\/launchable>/' \
           -e 's/<icon type="stock">freelens<\/icon>/<icon type="stock">'"${FLATPAK_ID}"'<\/icon>/' \
           -e '/<p>Freelens is maintained by the community.<\/p>/r metainfo-notes.txt' \
