@@ -67,8 +67,8 @@ modules:
     sources:
       - type: file
         dest-filename: freelens.deb
-        url: https://github.com/freelensapp/freelens/releases/download/v1.2.1/Freelens-1.2.1-linux-amd64.deb
-        sha256: 448477342b49775738a8835d1806cc9a973428dd058a2d58686c85d5065918d9
+        url: https://github.com/freelensapp/freelens/releases/download/v1.3.0/Freelens-1.3.0-linux-amd64.deb
+        sha256: fd5314939b2fe3c96eaf95b9689b77de0896289df632ba93f960441b96eb9117
         x-checker-data:
           type: json
           url: https://api.github.com/repos/freelensapp/freelens/releases/latest
@@ -79,8 +79,8 @@ modules:
           - x86_64
       - type: file
         dest-filename: freelens.deb
-        url: https://github.com/freelensapp/freelens/releases/download/v1.2.1/Freelens-1.2.1-linux-arm64.deb
-        sha256: 77b950229cc5c0ac9353f46d0992079288a8eef3320908e75fc6cee5f3595f79
+        url: https://github.com/freelensapp/freelens/releases/download/v1.3.0/Freelens-1.3.0-linux-arm64.deb
+        sha256: abff6d021c05e4e7df15764aba3f44cc4819f0509d1caa32a205bfd1476e5ccf
         x-checker-data:
           type: json
           url: https://api.github.com/repos/freelensapp/freelens/releases/latest
