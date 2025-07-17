@@ -72,7 +72,9 @@
   <content_rating type="oars-1.1"></content_rating>
   <releases>
     <release version="VERSION" date="DATE">
-      <description translatable="no">The latest release. The full release notes are available on <a href="https://github.com/freelensapp/freelens/releases">GitHub Releases</a> page.</description>
+      <description translatable="no">
+        <p>The latest release. The full release notes are available on GitHub Releases page.</p>
+      </description>
     </release>
   </releases>
 </component>
