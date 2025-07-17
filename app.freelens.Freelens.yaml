@@ -53,12 +53,10 @@ modules:
           install -Dm0644 usr/share/icons/hicolor/${size}x${size}/apps/freelens.png "${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png"
         done
       - |
-        sed \
-          -e 's/<launchable type="desktop-id">freelens.desktop<\/launchable>/<launchable type="desktop-id">'"${FLATPAK_ID}"'.desktop<\/launchable>/' \
-          -e 's/<icon type="stock">freelens<\/icon>/<icon type="stock">'"${FLATPAK_ID}"'<\/icon>/' \
-          -e '/<p>Freelens is maintained by the community.<\/p>/r metainfo-notes.txt' \
-          usr/share/metainfo/app.freelens.Freelens.metainfo.xml | tee metainfo-flatpak.xml
-      - install -Dm0644 metainfo-flatpak.xml "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+        sed -i -e s/VERSION/$(grep 'release version' usr/share/metainfo/app.freelens.Freelens.metainfo.xml | sed 's/.*version="\([^"]*\)".*/\1/')/ \
+          -e s/DATE/$(grep 'release version' usr/share/metainfo/app.freelens.Freelens.metainfo.xml | sed 's/.*date="\([^"]*\)".*/\1/')/ \
+          > "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+      - sed -i -e "s/VERSION/$version/" -e "s/DATE/$DATE/" "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
       - desktop-file-edit --set-key=Exec --set-value='freelens %U' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
@@ -91,7 +89,7 @@ modules:
       - type: file
         path: host-spawn.sh
       - type: file
-        path: metainfo-notes.txt
+        path: app.freelens.Freelens.metainfo.xml
 
   - name: host-spawn
     buildsystem: simple
