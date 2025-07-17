@@ -52,6 +52,7 @@ modules:
         for size in 16 22 24 32 36 48 64 72 96 128 192 256 512; do
           install -Dm0644 usr/share/icons/hicolor/${size}x${size}/apps/freelens.png "${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png"
         done
+      - mkdir -p "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
       - |
         sed -i -e s/VERSION/$(grep 'release version' usr/share/metainfo/app.freelens.Freelens.metainfo.xml | sed 's/.*version="\([^"]*\)".*/\1/')/ \
           -e s/DATE/$(grep 'release version' usr/share/metainfo/app.freelens.Freelens.metainfo.xml | sed 's/.*date="\([^"]*\)".*/\1/')/ \
