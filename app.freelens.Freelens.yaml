@@ -19,7 +19,7 @@ finish-args:
   - --filesystem=~/.kube
   # Run commands on host
   - --talk-name=org.freedesktop.Flatpak
-    # Network Access
+  # Network Access
   - --share=network
   # We need to be able to inhibit sleep
   - --system-talk-name=org.freedesktop.login1
@@ -57,12 +57,11 @@ modules:
           -e 's/<launchable type="desktop-id">freelens.desktop<\/launchable>/<launchable type="desktop-id">'"${FLATPAK_ID}"'.desktop<\/launchable>/' \
           -e 's/<icon type="stock">freelens<\/icon>/<icon type="stock">'"${FLATPAK_ID}"'<\/icon>/' \
           -e '/<p>Freelens is maintained by the community.<\/p>/r metainfo-notes.txt' \
-          usr/share/metainfo/app.freelens.Freelens.metainfo.xml > metainfo-flatpak.xml
+          usr/share/metainfo/app.freelens.Freelens.metainfo.xml | tee metainfo-flatpak.xml
       - install -Dm0644 metainfo-flatpak.xml "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
       - desktop-file-edit --set-key=Exec --set-value='freelens %U' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
-      - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
-        "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+      - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - patch-desktop-filename "${FLATPAK_DEST}/Freelens/resources/app.asar"
     sources:
       - type: file
@@ -73,8 +72,7 @@ modules:
           type: json
           url: https://api.github.com/repos/freelensapp/freelens/releases/latest
           version-query: .tag_name | sub("^v"; "")
-          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-amd64.deb")
-            | .browser_download_url
+          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-amd64.deb") | .browser_download_url
         only-arches:
           - x86_64
       - type: file
@@ -85,8 +83,7 @@ modules:
           type: json
           url: https://api.github.com/repos/freelensapp/freelens/releases/latest
           version-query: .tag_name | sub("^v"; "")
-          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-arm64.deb")
-            | .browser_download_url
+          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-arm64.deb") | .browser_download_url
         only-arches:
           - aarch64
       - type: file
