@@ -62,29 +62,32 @@ modules:
       - sed -i -e "s/VERSION/$version/" -e "s/DATE/$DATE/" "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
       - desktop-file-edit --set-key=Exec --set-value='freelens %U' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
-      - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+      - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
+        "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - patch-desktop-filename "${FLATPAK_DEST}/Freelens/resources/app.asar"
     sources:
       - type: file
         dest-filename: freelens.deb
-        url: https://github.com/freelensapp/freelens/releases/download/v1.5.1/Freelens-1.5.1-linux-amd64.deb
-        sha256: 050954cf038f16a89d6d90c9e5ab82b0e6901757bfe79b152cc5b8d7b3dd5f9c
+        url: https://github.com/freelensapp/freelens/releases/download/v1.5.2/Freelens-1.5.2-linux-amd64.deb
+        sha256: 3bc60beeb4ef39066704135b975d67e83d6e9c32d728ab7f73c997284d975e09
         x-checker-data:
           type: json
           url: https://api.github.com/repos/freelensapp/freelens/releases/latest
           version-query: .tag_name | sub("^v"; "")
-          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-amd64.deb") | .browser_download_url
+          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-amd64.deb")
+            | .browser_download_url
         only-arches:
           - x86_64
       - type: file
         dest-filename: freelens.deb
-        url: https://github.com/freelensapp/freelens/releases/download/v1.5.1/Freelens-1.5.1-linux-arm64.deb
-        sha256: e94044d9891295a40d8410b45abfbf8bb0629365da004625012039bbf541afa0
+        url: https://github.com/freelensapp/freelens/releases/download/v1.5.2/Freelens-1.5.2-linux-arm64.deb
+        sha256: 4d57980ae74d7072cc24e65f39631f94080eafbe6c308fa047174977a2358349
         x-checker-data:
           type: json
           url: https://api.github.com/repos/freelensapp/freelens/releases/latest
           version-query: .tag_name | sub("^v"; "")
-          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-arm64.deb") | .browser_download_url
+          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-arm64.deb")
+            | .browser_download_url
         only-arches:
           - aarch64
       - type: file
