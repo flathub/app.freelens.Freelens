@@ -68,8 +68,8 @@ modules:
     sources:
       - type: file
         dest-filename: freelens.deb
-        url: https://github.com/freelensapp/freelens/releases/download/v1.5.2/Freelens-1.5.2-linux-amd64.deb
-        sha256: 3bc60beeb4ef39066704135b975d67e83d6e9c32d728ab7f73c997284d975e09
+        url: https://github.com/freelensapp/freelens/releases/download/v1.5.3/Freelens-1.5.3-linux-amd64.deb
+        sha256: df40bf638d25cfdf9c0203b86a66408c9f2884e9ca6e6dabf0adfa96d9e43ea8
         x-checker-data:
           type: json
           url: https://api.github.com/repos/freelensapp/freelens/releases/latest
@@ -80,8 +80,8 @@ modules:
           - x86_64
       - type: file
         dest-filename: freelens.deb
-        url: https://github.com/freelensapp/freelens/releases/download/v1.5.2/Freelens-1.5.2-linux-arm64.deb
-        sha256: 4d57980ae74d7072cc24e65f39631f94080eafbe6c308fa047174977a2358349
+        url: https://github.com/freelensapp/freelens/releases/download/v1.5.3/Freelens-1.5.3-linux-arm64.deb
+        sha256: 280d693e0fa02f799df11bc1fab19d7cf56bfb7250ba3e4e1938ed803baf779b
         x-checker-data:
           type: json
           url: https://api.github.com/repos/freelensapp/freelens/releases/latest
@@ -103,8 +103,8 @@ modules:
       - install -Dm755 host-spawn /app/bin/host-spawn
     sources:
       - type: file
-        url: https://github.com/1player/host-spawn/releases/download/v1.6.1/host-spawn-x86_64
-        sha256: 733746ab498e07d065cbecf80bacd447eb21846d1462e8fe23fdd9d9dc977b50
+        url: https://github.com/1player/host-spawn/releases/download/v1.6.2/host-spawn-x86_64
+        sha256: 077bc09a087292447ba17cfe2156a93f71bf56c4c6be8e38d3abe65c1240f34c
         dest-filename: host-spawn
         only-arches:
           - x86_64
@@ -114,8 +114,8 @@ modules:
           version-query: .tag_name | sub("^v"; "")
           url-query: .assets[] | select(.name=="host-spawn-x86_64") | .browser_download_url
       - type: file
-        url: https://github.com/1player/host-spawn/releases/download/v1.6.1/host-spawn-aarch64
-        sha256: 71b7744a4d0b29279523cc0f0ed1a7af5e9555510bd9e6d4685391b59faefaac
+        url: https://github.com/1player/host-spawn/releases/download/v1.6.2/host-spawn-aarch64
+        sha256: 8b30215b0b6b66c8c34a3e22d372dd39020295cd0904608bc2c5f5ecff829e5f
         dest-filename: host-spawn
         only-arches:
           - aarch64
