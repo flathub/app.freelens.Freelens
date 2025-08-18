@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>app.freelens.Freelens</id>
   <metadata_license>MIT</metadata_license>
@@ -70,7 +71,7 @@
   </keywords>
   <icon type="stock">app.freelens.Freelens</icon>
   <icon type="remote">https://freelensapp.github.io/images/freelens-logo-512.png</icon>
-  <content_rating type="oars-1.1"></content_rating>
+  <content_rating type="oars-1.1"/>
   <releases>
     <release version="VERSION" date="DATE">
       <description translatable="no">
