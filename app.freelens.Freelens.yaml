@@ -1,8 +1,8 @@
 id: app.freelens.Freelens
 base: org.electronjs.Electron2.BaseApp
-base-version: '24.08'
+base-version: '25.08'
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: freelens
 separate-locales: false
@@ -66,7 +66,7 @@ modules:
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
         "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
-      - patch-desktop-filename "${FLATPAK_DEST}/Freelens/resources/app.asar"
+      - patch-electron-desktop-filename "${FLATPAK_DEST}/Freelens/resources/app.asar"
     sources:
       - type: file
         dest-filename: freelens.deb
