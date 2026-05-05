@@ -19,7 +19,7 @@ Note specific to Flatpak:
 The application is sandboxed. It includes bundled `kubectl` and `helm`
 commands and uses the `~/.kube/config` file by default.
 
-Flatpak adds wrappers for the `aws`, `doctl`, `gke-gcloud-auth-plugin`,
+Flatpak adds wrappers for the `aws`, `doctl`, `gke-gcloud-auth-plugin`, `glab`, 
 `kubelogin` and `scw` tools, running them as commands from the host system.
 
 The terminal uses `/bin/sh` by default, but it can be switched to, for
