@@ -75,7 +75,6 @@ modules:
             sys.exit(0)
         with open(asar_path, 'rb') as f:
             header_size = struct.unpack('<I', f.read(4))[0]
-            f.read(4)
             header = json.loads(f.read(header_size).decode('utf-8'))
         def walk(files, prefix=''):
             for name, info in files.items():
