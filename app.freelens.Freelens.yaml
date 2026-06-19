@@ -4,6 +4,8 @@ base-version: '25.08'
 runtime: org.freedesktop.Platform
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node24
 command: freelens
 separate-locales: false
 finish-args:
@@ -38,6 +40,8 @@ finish-args:
 modules:
   - name: freelens
     buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/node24/bin
     build-commands:
       - |
         bsdtar -Oxf freelens.deb 'data.tar.xz' |
@@ -66,31 +70,16 @@ modules:
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
         "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+      - npx -y @electron/asar extract "${FLATPAK_DEST}/Freelens/resources/app.asar" /tmp/asar-extract
       - |
-        python3 -c "
-        import json, os, struct, sys
-        asar_path = '${FLATPAK_DEST}/Freelens/resources/app.asar'
-        unpacked_dir = asar_path + '.unpacked'
-        if not os.path.exists(asar_path):
-            sys.exit(0)
-        with open(asar_path, 'rb') as f:
-            size_buf = f.read(8)
-            first = struct.unpack('<I', size_buf[:4])[0]
-            header_size = struct.unpack('<I', size_buf[4:8])[0] if first == 0xFFFFFFFF else first
-            header = json.loads(f.read(header_size).decode('utf-8'))
-        def walk(files, prefix=''):
-            for name, info in files.items():
-                path = os.path.join(prefix, name) if prefix else name
-                if 'files' in info:
-                    walk(info['files'], path)
-                elif info.get('unpacked'):
-                    fp = os.path.join(unpacked_dir, path)
-                    if not os.path.exists(fp):
-                        os.makedirs(os.path.dirname(fp), exist_ok=True)
-                        open(fp, 'w').close()
-        walk(header['files'])
+        node -e "
+        const{readFileSync,writeFileSync}=require('fs');
+        const p=JSON.parse(readFileSync('/tmp/asar-extract/package.json','utf8'));
+        p.desktopName='${FLATPAK_ID}.desktop';
+        writeFileSync('/tmp/asar-extract/package.json',JSON.stringify(p));
         "
-      - patch-electron-desktop-filename --skip-integrity-check "${FLATPAK_DEST}/Freelens/resources/app.asar"
+      - npx -y @electron/asar pack /tmp/asar-extract "${FLATPAK_DEST}/Freelens/resources/app.asar" --unpack '*.node'
+      - rm -rf /tmp/asar-extract
     sources:
       - type: file
         dest-filename: freelens.deb
