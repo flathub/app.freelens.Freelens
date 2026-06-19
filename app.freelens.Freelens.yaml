@@ -74,7 +74,9 @@ modules:
         if not os.path.exists(asar_path):
             sys.exit(0)
         with open(asar_path, 'rb') as f:
-            header_size = struct.unpack('<I', f.read(4))[0]
+            size_buf = f.read(8)
+            first = struct.unpack('<I', size_buf[:4])[0]
+            header_size = struct.unpack('<I', size_buf[4:8])[0] if first == 0xFFFFFFFF else first
             header = json.loads(f.read(header_size).decode('utf-8'))
         def walk(files, prefix=''):
             for name, info in files.items():
