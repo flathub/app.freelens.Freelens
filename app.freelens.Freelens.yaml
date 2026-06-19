@@ -66,6 +66,29 @@ modules:
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
         "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+      - |
+        python3 -c "
+        import json, os, struct, sys
+        asar_path = '${FLATPAK_DEST}/Freelens/resources/app.asar'
+        unpacked_dir = asar_path + '.unpacked'
+        if not os.path.exists(asar_path):
+            sys.exit(0)
+        with open(asar_path, 'rb') as f:
+            header_size = struct.unpack('<I', f.read(4))[0]
+            f.read(4)
+            header = json.loads(f.read(header_size).decode('utf-8'))
+        def walk(files, prefix=''):
+            for name, info in files.items():
+                path = os.path.join(prefix, name) if prefix else name
+                if 'files' in info:
+                    walk(info['files'], path)
+                elif info.get('unpacked'):
+                    fp = os.path.join(unpacked_dir, path)
+                    if not os.path.exists(fp):
+                        os.makedirs(os.path.dirname(fp), exist_ok=True)
+                        open(fp, 'w').close()
+        walk(header['files'])
+        "
       - patch-electron-desktop-filename --skip-integrity-check "${FLATPAK_DEST}/Freelens/resources/app.asar"
     sources:
       - type: file
