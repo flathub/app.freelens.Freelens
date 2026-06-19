@@ -66,7 +66,7 @@ modules:
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
         "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
-      - patch-electron-desktop-filename "${FLATPAK_DEST}/Freelens/resources/app.asar"
+      - patch-electron-desktop-filename --skip-integrity-check "${FLATPAK_DEST}/Freelens/resources/app.asar"
     sources:
       - type: file
         dest-filename: freelens.deb
