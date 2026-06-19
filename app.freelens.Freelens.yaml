@@ -70,7 +70,7 @@ modules:
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
         "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
-      - npx -y @electron/asar extract "${FLATPAK_DEST}/Freelens/resources/app.asar" /tmp/asar-extract
+      - npx -y @electron/asar@4 extract "${FLATPAK_DEST}/Freelens/resources/app.asar" /tmp/asar-extract
       - |
         node -e "
         const{readFileSync,writeFileSync}=require('fs');
@@ -78,7 +78,7 @@ modules:
         p.desktopName='${FLATPAK_ID}.desktop';
         writeFileSync('/tmp/asar-extract/package.json',JSON.stringify(p));
         "
-      - npx -y @electron/asar pack /tmp/asar-extract "${FLATPAK_DEST}/Freelens/resources/app.asar" --unpack '*.node'
+      - npx -y @electron/asar@4 pack /tmp/asar-extract "${FLATPAK_DEST}/Freelens/resources/app.asar" --unpack '*.node'
       - rm -rf /tmp/asar-extract
     sources:
       - type: file
