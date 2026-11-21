@@ -3,6 +3,7 @@
 [![Home](https://img.shields.io/badge/%F0%9F%8F%A0-freelens.app-02a7a0)](https://freelens.app)
 [![release](https://img.shields.io/github/v/release/freelensapp/freelens?display_name=tag&sort=semver)](https://github.com/freelensapp/freelens/releases/latest)
 [![Flathub Version](https://img.shields.io/flathub/v/app.freelens.Freelens)](https://flathub.org/apps/app.freelens.Freelens)
+[![Flathub Downloads](https://img.shields.io/flathub/downloads/app.freelens.Freelens)](https://flathub.org/apps/app.freelens.Freelens)
 
 The [flatpak](https://flathub.org/) package for
 [Freelens](https://github.com/freelensapp/freelens).
@@ -28,3 +29,9 @@ kubeconfig, but no other variables of the sandbox.
 The terminal uses `/bin/sh` by default, but it can be switched to, for
 example, `/bin/bash` for a sandboxed environment or `/app/bin/host-spawn` for
 a host environment.
+
+## Updates
+
+A new release of Freelens comes as a pull request from
+[freelensapp/freelens-flatpak](https://github.com/freelensapp/freelens-flatpak),
+which updates the `freelens.deb` sources and the release in the metainfo.
