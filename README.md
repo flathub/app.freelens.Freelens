@@ -19,11 +19,11 @@ Note specific to Flatpak:
 The application is sandboxed. It includes bundled `kubectl` and `helm`
 commands and uses the `~/.kube/config` file by default.
 
-Flatpak adds wrappers for the `aws`, `doctl`, `gke-gcloud-auth-plugin`, `glab`, 
-`kubelogin` and `scw` tools, running them as commands from the host system. They
-get the variables of these tools from the environment, such as `AWS_PROFILE`
-from the `env` of an exec plugin in the kubeconfig, but no other variables of
-the sandbox.
+Flatpak adds wrappers for the `assume`, `aws`, `doctl`,
+`gke-gcloud-auth-plugin`, `glab`, `kubelogin` and `scw` tools, running them as
+commands from the host system. They get the variables of these tools from the
+environment, such as `AWS_PROFILE` from the `env` of an exec plugin in the
+kubeconfig, but no other variables of the sandbox.
 
 The terminal uses `/bin/sh` by default, but it can be switched to, for
 example, `/bin/bash` for a sandboxed environment or `/app/bin/host-spawn` for
