@@ -73,10 +73,14 @@
   <icon type="remote">https://freelensapp.github.io/images/freelens-logo-512.png</icon>
   <content_rating type="oars-1.1"/>
   <releases>
-    <release version="VERSION" date="DATE">
+    <release version="2.1.0" date="2026-11-21">
       <description translatable="no">
-        <p>The latest release. The full release notes are available on GitHub Releases page.</p>
+        <p>The first feature release after v2.0.0, with the security fixes of Node v24.22.3.</p>
+        <p>It is a release full of fixes and new features made by the wonderful Freelens community, and special thanks go to everyone who contributed to it.</p>
+        <p>v2.1.0 brings themes as files with eight built-in themes, a choice of accent color and zoom level, overviews as cards, combined logs for the pods of a workload, debugging a pod in an ephemeral container, copying the values of the details in one click, the certificate details of secrets, the mutating admission policies, metrics for GKE clusters from Google Managed Prometheus, and Helm releases read straight from the Kubernetes API. The extension API gains a credential store encrypted with the secret store of the system, the certificate view of secrets, the overview cards, the copy controls and the generic components the views of Freelens are built from. It also fixes the connection to clusters whose kubeconfig has a colon in its file name or is written in UTF-16, Windows shells given by name, custom extension registries served under a path, the metrics of several setups, and several issues of the logs, the sidebar and the details.</p>
+        <p>The full release notes are available on the GitHub Releases page.</p>
       </description>
+      <url type="details">https://github.com/freelensapp/freelens/releases/tag/v2.1.0</url>
     </release>
   </releases>
 </component>

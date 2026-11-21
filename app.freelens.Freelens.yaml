@@ -54,14 +54,7 @@ modules:
         for size in 16 22 24 32 36 48 64 72 96 128 192 256 512; do
           install -Dm0644 usr/share/icons/hicolor/${size}x${size}/apps/freelens.png "${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png"
         done
-      - mkdir -p "${FLATPAK_DEST}/share/metainfo"
-      - |
-        sed \
-          -e s/VERSION/$(grep 'release version' usr/share/metainfo/app.freelens.Freelens.metainfo.xml | sed 's/.*version="\([^"]*\)".*/\1/')/ \
-          -e s/DATE/$(grep 'release version' usr/share/metainfo/app.freelens.Freelens.metainfo.xml | sed 's/.*date="\([^"]*\)".*/\1/')/ \
-          app.freelens.Freelens.metainfo.xml \
-          > "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
-      - sed -i -e "s/VERSION/$version/" -e "s/DATE/$DATE/" "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+      - install -Dm0644 app.freelens.Freelens.metainfo.xml "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
       - desktop-file-edit --set-key=Exec --set-value='freelens %U' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
       - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='freelens.desktop;'
@@ -72,24 +65,12 @@ modules:
         dest-filename: freelens.deb
         url: https://github.com/freelensapp/freelens/releases/download/v2.1.0/Freelens-2.1.0-linux-amd64.deb
         sha256: 821b32bb18eccd06a4b5a3a7f5d503e3ef4bd17e4b41e82317e5379efbac0baf
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/freelensapp/freelens/releases/latest
-          version-query: .tag_name | sub("^v"; "")
-          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-amd64.deb")
-            | .browser_download_url
         only-arches:
           - x86_64
       - type: file
         dest-filename: freelens.deb
         url: https://github.com/freelensapp/freelens/releases/download/v2.1.0/Freelens-2.1.0-linux-arm64.deb
         sha256: 696a4f184bef4313ec04610b9e30175b8cd47800f3d2938e5118d3025e54ce6f
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/freelensapp/freelens/releases/latest
-          version-query: .tag_name | sub("^v"; "")
-          url-query: .assets[] | select(.name=="Freelens-" + $version + "-linux-arm64.deb")
-            | .browser_download_url
         only-arches:
           - aarch64
       - type: file

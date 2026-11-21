@@ -29,3 +29,9 @@ kubeconfig, but no other variables of the sandbox.
 The terminal uses `/bin/sh` by default, but it can be switched to, for
 example, `/bin/bash` for a sandboxed environment or `/app/bin/host-spawn` for
 a host environment.
+
+## Updates
+
+A new release of Freelens comes as a pull request from
+[freelensapp/freelens-flatpak](https://github.com/freelensapp/freelens-flatpak),
+which updates the `freelens.deb` sources and the release in the metainfo.
