@@ -30,15 +30,15 @@
   <screenshots>
     <screenshot type="default">
       <caption>Troubleshooting the pod</caption>
-      <image>https://freelensapp.github.io/images/freelens-screenshot-linux.png</image>
+      <image>https://raw.githubusercontent.com/freelensapp/freelens/v2.0.0/docs/images/linux-pods-dark.jpg</image>
     </screenshot>
     <screenshot>
       <caption>Cluster overview</caption>
-      <image>https://freelensapp.github.io/images/freelens-screenshot-linux-cluster.png</image>
+      <image>https://raw.githubusercontent.com/freelensapp/freelens/v2.0.0/docs/images/linux-cluster-dark.jpg</image>
     </screenshot>
     <screenshot>
-      <caption>Catalog</caption>
-      <image>https://freelensapp.github.io/images/freelens-screenshot-linux-catalog.png</image>
+      <caption>Installing a Helm chart</caption>
+      <image>https://raw.githubusercontent.com/freelensapp/freelens/v2.0.0/docs/images/linux-charts-dark.jpg</image>
     </screenshot>
   </screenshots>
   <branding>
